@@ -1,30 +1,28 @@
 class Yoink < Formula
   desc "Small, opinionated container deploy CLI for a handful of services on a handful of hosts."
   homepage "https://github.com/oddur/yoink"
-  version "0.2.0"
+  version "0.2.1"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/oddur/yoink/releases/download/v0.2.0/yoink-aarch64-apple-darwin.tar.xz"
-      sha256 "76faaaa173ddfc3149272804f394ba409cb22ac8c74a9bc6f22f5cb806e7b0d7"
+      url "https://github.com/oddur/yoink/releases/download/v0.2.1/yoink-aarch64-apple-darwin.tar.xz"
+      sha256 "c08862add161ae10c460e32686407cddd9b45172989cbca3463ca8ed3032d638"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/oddur/yoink/releases/download/v0.2.0/yoink-x86_64-apple-darwin.tar.xz"
-      sha256 "f5695da9f55dd233b83e4a9e878dad5207f8b34c645e38e30c5f163fe8d5a08a"
+      url "https://github.com/oddur/yoink/releases/download/v0.2.1/yoink-x86_64-apple-darwin.tar.xz"
+      sha256 "1b3bbcece72b81b57f460c29c434e69e272cc78a95624b850275269d220f144f"
     end
   end
-  if OS.linux?
-    if Hardware::CPU.intel?
-      url "https://github.com/oddur/yoink/releases/download/v0.2.0/yoink-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "051bb755ab2c769d1f03cbcf4e34894973e3fdba82d9c244c97ab97c4c0a4d57"
-    end
+  if OS.linux? && Hardware::CPU.intel?
+    url "https://github.com/oddur/yoink/releases/download/v0.2.1/yoink-x86_64-unknown-linux-gnu.tar.xz"
+    sha256 "4a29257e71c696feccdab08642d1289797c54fc7938746b5e9169781283d2fbe"
   end
   license "MIT"
 
   BINARY_ALIASES = {
-    "aarch64-apple-darwin": {},
-    "x86_64-apple-darwin": {},
-    "x86_64-unknown-linux-gnu": {}
-  }
+    "aarch64-apple-darwin":     {},
+    "x86_64-apple-darwin":      {},
+    "x86_64-unknown-linux-gnu": {},
+  }.freeze
 
   def target_triple
     cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
@@ -42,15 +40,9 @@ class Yoink < Formula
   end
 
   def install
-    if OS.mac? && Hardware::CPU.arm?
-      bin.install "yoink"
-    end
-    if OS.mac? && Hardware::CPU.intel?
-      bin.install "yoink"
-    end
-    if OS.linux? && Hardware::CPU.intel?
-      bin.install "yoink"
-    end
+    bin.install "yoink" if OS.mac? && Hardware::CPU.arm?
+    bin.install "yoink" if OS.mac? && Hardware::CPU.intel?
+    bin.install "yoink" if OS.linux? && Hardware::CPU.intel?
 
     install_binary_aliases!
 

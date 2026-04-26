@@ -1,20 +1,20 @@
 class Yoink < Formula
   desc "Small, opinionated container deploy CLI for a handful of services on a handful of hosts."
   homepage "https://github.com/oddur/yoink"
-  version "0.3.0"
+  version "0.4.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/oddur/yoink/releases/download/v0.3.0/yoink-aarch64-apple-darwin.tar.xz"
-      sha256 "15412c9ec3c8cc654ad5a146d8dd7b0ddd68eaf7a06031f92f85b864d9cd3d76"
+      url "https://github.com/oddur/yoink/releases/download/v0.4.0/yoink-aarch64-apple-darwin.tar.xz"
+      sha256 "757c57bfbffb5aba121951be4b6ea2b6c7c9e66a0c9c61d0568ff31ca671ab9f"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/oddur/yoink/releases/download/v0.3.0/yoink-x86_64-apple-darwin.tar.xz"
-      sha256 "f2dd1e379013766055965fcbf5bbd9f35e97350600b14c96ea84e15ee8cfc248"
+      url "https://github.com/oddur/yoink/releases/download/v0.4.0/yoink-x86_64-apple-darwin.tar.xz"
+      sha256 "ecbc3072a2e7a1c3975636c54be4a57dfd448e1a064b41ffa2ef1f8d922c6b01"
     end
   end
   if OS.linux? && Hardware::CPU.intel?
-    url "https://github.com/oddur/yoink/releases/download/v0.3.0/yoink-x86_64-unknown-linux-gnu.tar.xz"
-    sha256 "9bddbef1f3219c94f6e59c559b5fe8072ce03600efec88cf0ecf5412bb32c4cc"
+    url "https://github.com/oddur/yoink/releases/download/v0.4.0/yoink-x86_64-unknown-linux-gnu.tar.xz"
+    sha256 "7805466c23b7cff18d5fd8de88cdd6feaf75190687a1272746c6717fba029687"
   end
   license "MIT"
 
